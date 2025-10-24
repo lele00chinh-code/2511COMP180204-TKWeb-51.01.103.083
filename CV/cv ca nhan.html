@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CV - Lê Thị Anh Thi</title>
+  <style>
+    :root {
+      --be-bg: #f1e9de;
+      --white-bg: #ffffff;
+      --text: #222;
+      --subtext: #555;
+      --highlight: #b79f7c;
+      --bar: linear-gradient(90deg, #d1aa6d, #b88b4a);
+      --card: #f9f6f2;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s ease;
+    }
+
+    body.dark {
+      --be-bg: #1e293b;
+      --white-bg: #0f172a;
+      --text: #f8fafc;
+      --subtext: #cbd5e1;
+      --highlight: #f0c77d;
+      --bar: linear-gradient(90deg, #facc15, #eab308);
+      --card: #1e293b;
+      --shadow: rgba(255, 255, 255, 0.08);
+    }
+
+    * { box-sizing: border-box; transition: var(--transition); }
+
+    body {
+      margin: 0;
+      font-family: "Times New Roman", Times, serif;
+      background: var(--white-bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .toolbar button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      background: var(--highlight);
+      color: #fff;
+      box-shadow: 0 3px 10px var(--shadow);
+      transition: var(--transition);
+    }
+
+    .toolbar button:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+
+    .cv {
+      width: 950px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px var(--shadow);
+      background: var(--white-bg);
+      transition: var(--transition);
+    }
+
+    .header {
+      background: linear-gradient(90deg, var(--be-bg) 50%, var(--white-bg) 50%);
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 40px 0 20px;
+      transition: var(--transition);
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: var(--card);
+      padding: 25px 45px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px var(--shadow);
+      width: 75%;
+      position: relative;
+    }
+
+    .circle-deco {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,170,130,0.15) 0%, rgba(255,255,255,0) 70%);
+      top: -25px;
+      left: -25px;
+      z-index: 1;
+    }
+
+    body.dark .circle-deco {
+      background: radial-gradient(circle, rgba(234,179,8,0.2) 0%, rgba(15,23,42,0) 70%);
+    }
+
+    .photo {
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 7px solid var(--white-bg);
+      box-shadow: 0 8px 18px var(--shadow);
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo:hover img {
+      transform: scale(1.06);
+    }
+
+    .info {
+      position: relative;
+      z-index: 2;
+    }
+
+    .info h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: capitalize;
+      color: var(--text);
+    }
+
+    .info h2 {
+      margin: 8px 0 12px;
+      font-size: 16px;
+      color: var(--highlight);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .info p {
+      font-size: 18px;
+      color: var(--subtext);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    .main {
+      display: flex;
+      background: var(--white-bg);
+      margin-top: 0;
+    }
+
+    .left {
+      width: 50%;
+      background: var(--be-bg);
+      padding: 40px 60px;
+      font-size: 16px;
+    }
+
+    .right {
+      width: 50%;
+      background: var(--white-bg);
+      padding: 40px 60px;
+      font-size: 19px;
+      line-height: 1.85;
+    }
+
+    .section {
+      margin-bottom: 35px;
+    }
+
+    .section h3 {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--highlight);
+      margin-bottom: 14px;
+      font-weight: bold;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .icon { color: var(--highlight); font-size: 17px; width: 20px; text-align: center; }
+
+    .skills .skill { margin-bottom: 15px; }
+
+    .skills .label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .bar {
+      width: 100%;
+      height: 9px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    body.dark .bar {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      border-radius: 30px;
+      background: var(--bar);
+    }
+
+    .interest, .reference {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    .reference p { margin: 4px 0; }
+
+    .edu-item, .exp-item { margin-bottom: 25px; }
+
+    .year { font-size: 17px; color: var(--highlight); margin-bottom: 6px; }
+
+    .title { font-size: 19px; font-weight: bold; color: var(--text); margin-bottom: 8px; }
+
+    .desc { font-size: 18px; color: var(--subtext); line-height: 1.9; }
+
+    @media (max-width: 820px) {
+      .cv { width: 95%; }
+      .header { padding: 30px 10px; background: var(--be-bg); }
+      .profile-box { flex-direction: column; width: 90%; gap: 20px; padding: 25px; text-align: center; }
+      .photo { width: 120px; height: 120px; }
+      .info h1 { font-size: 22px; }
+      .main { flex-direction: column; }
+      .left, .right { width: 100%; padding: 30px 25px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .cv { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="toggleTheme">🌞 / 🌙</button>
+    <button onclick="window.print()">🖨️ In / PDF</button>
+  </div>
+
+  <div class="cv">
+    <div class="header">
+      <div class="profile-box">
+        <div class="circle-deco"></div>
+        <div class="photo">
+          <img src="thi.jpg" alt="Ảnh Lê Thị Anh Thi">
+        </div>
+        <div class="info">
+          <h1>Lê Thị Anh Thi</h1>
+          <h2>Graphic Designer</h2>
+          <p>Assist the department head in carrying out digital marketing campaigns, working closely with the marketing head for promotions and creative design projects.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <div class="section">
+          <h3>Contact</h3>
+          <div class="contact-item"><span class="icon">📞</span> 0123 456 789</div>
+          <div class="contact-item"><span class="icon">✉️</span> anthi@example.com</div>
+          <div class="contact-item"><span class="icon">🌐</span> www.lethianhthi.com</div>
+          <div class="contact-item"><span class="icon">📍</span> TP.HCM, Việt Nam</div>
+        </div>
+
+        <div class="section skills">
+          <h3>Skills</h3>
+          <div class="skill">
+            <div class="label"><span>Photoshop</span><span>90%</span></div>
+            <div class="bar"><i style="width:90%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="label"><span>Illustrator</span><span>85%</span></div>
+            <div class="bar"><i style="width:85%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="label"><span>Web Design</span><span>80%</span></div>
+            <div class="bar"><i style="width:80%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="label"><span>UI/UX</span><span>75%</span></div>
+            <div class="bar"><i style="width:75%"></i></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Interest</h3>
+          <div class="interest">
+            Photography<br>
+            Volunteering<br>
+            Travel & Culture
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Reference Person</h3>
+          <div class="reference">
+            <p><strong>Ms. Phúc Hậu — FIT-HCMUE</strong></p>
+            <p>Position: Lecturer, Faculty of Information Technology</p>
+            <p>Contact: 0123 456 789</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="section">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <div class="year">2020 - 2024</div>
+            <div class="title">Bachelor of Design</div>
+            <div class="desc">Academic excellence in Web Design and English.</div>
+          </div>
+          <div class="edu-item">
+            <div class="year">2024 - 2025</div>
+            <div class="title">Master of Design</div>
+            <div class="desc">Academic excellence in Design and Creativity.</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Experience</h3>
+          <div class="exp-item">
+            <div class="year">2025 - Present</div>
+            <div class="title">Senior Graphic Designer</div>
+            <div class="desc">Lead designer in creative projects for digital marketing, branding, and UI/UX.</div>
+          </div>
+          <div class="exp-item">
+            <div class="year">2023 - 2025</div>
+            <div class="title">Junior Designer</div>
+            <div class="desc">Collaborated with marketing teams to create visuals and product mockups.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("toggleTheme");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  </script>
+</body>
+</html>

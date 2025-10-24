@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng Quản lý Sản phẩm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fefefe;
+            margin: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #27ae60;
+            color: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 6px 12px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        .edit-btn {
+            background-color: #f39c12;
+        }
+        .edit-btn:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ứng dụng Quản lý Sản phẩm</h1>
+
+    <div class="form-container">
+        <h3>Thêm sản phẩm</h3>
+        <input type="text" id="newProduct" placeholder="Nhập tên sản phẩm...">
+        <button onclick="addProduct()">Thêm</button>
+    </div>
+
+    <h3 style="text-align:center;">Danh sách sản phẩm</h3>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        let products = [
+            "Chuối", "Cam vàng", "Dưa hấu ruột vàng", "Dưa lưới", "Ổi ruby", "Đào", "Xoài cát Hòa Lộc",
+            "Bưởi da xanh", "Kiwi", "Việt quất", "Dâu tây", "Vải", "Nho", "Cherry",
+            "Mơ", "Dứa", "Lê", "Thanh long vàng", "Lựu đỏ", "Táo", "Phúc bồn tử", "Mâm xôi"
+        ];
+
+        function displayProducts() {
+            const tableBody = document.querySelector("#productTable tbody");
+            tableBody.innerHTML = "";
+            products.forEach((product, index) => {
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${product}</td>
+                        <td>
+                            <button class="edit-btn" onclick="editProduct(${index})">Sửa</button>
+                            <button class="delete-btn" onclick="deleteProduct(${index})">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function addProduct() {
+            const newProduct = document.getElementById("newProduct").value.trim();
+            if (newProduct === "") {
+                alert("Vui lòng nhập tên sản phẩm!");
+                return;
+            }
+            products.push(newProduct);
+            document.getElementById("newProduct").value = "";
+            alert("Đã thêm sản phẩm thành công!");
+            displayProducts();
+        }
+
+        function editProduct(index) {
+            const currentName = products[index];
+            const newName = prompt("Nhập tên mới cho sản phẩm:", currentName);
+            if (newName === null) return;
+            if (newName.trim() === "") {
+                alert("Tên sản phẩm không được để trống!");
+                return;
+            }
+            products[index] = newName.trim();
+            alert("Đã cập nhật sản phẩm thành công!");
+            displayProducts();
+        }
+
+        function deleteProduct(index) {
+            if (confirm(`Bạn có chắc muốn xóa "${products[index]}" không?`)) {
+                products.splice(index, 1);
+                alert("Đã xóa sản phẩm!");
+                displayProducts();
+            }
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>

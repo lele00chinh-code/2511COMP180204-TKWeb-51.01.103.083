@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gian hàng sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{ --accent:#ffd27f; }
+    body{ font-family:"Times New Roman", serif; background: url('/image/bg.jpg') center/cover no-repeat fixed; margin:0; color:#222; font-size:24px;}
+    .wrap{ background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.82)); min-height:100vh; padding:70px 18px; }
+    .panel{ max-width:900px; margin:0 auto; background:rgba(255,255,255,0.95); padding:22px; border-left:6px solid var(--accent); border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.06);}
+    .return{ position:fixed; top:18px; left:18px; color:var(--accent); font-size:26px; text-decoration:none; }
+    .search{ margin-bottom:18px; }
+    .search input{ width:100%; padding:10px 12px; font-size:20px; border:1px solid #ddd; border-radius:8px;}
+    ul{ list-style:none; padding:0; margin:0; }
+    li.item{ display:flex; gap:14px; align-items:center; padding:12px; border-radius:10px; border-left:6px solid var(--accent); background:#fff; margin-bottom:12px; box-shadow:0 6px 18px rgba(0,0,0,0.04);}
+    li.item img{ width:90px; height:auto; border-radius:8px; }
+    footer{ text-align:center; margin-top:18px; color:var(--accent); }
+    @media(max-width:576px){ body{font-size:18px;} }
+  </style>
+</head>
+<body>
+  <a class="return" href="index.html">⬅</a>
+  <div class="wrap">
+    <div class="panel">
+      <h1 style="text-align:center; color:#333;">🏪 Gian hàng sản phẩm</h1>
+
+      <div class="search"><input id="q" placeholder="🔎 Tìm kiếm sản phẩm..." /></div>
+
+      <ul id="list">
+        <li class="item"><img src="Iconcreme-Halloween-Pumpkin.512.png" alt=""> <div><strong>Bí ngô Halloween</strong><div style="color:#555;">Đèn và trang trí</div></div></li>
+        <li class="item"><img src="Iconcreme-Halloween-Bat.512.png" alt=""> <div><strong>Cánh dơi trang trí</strong><div style="color:#555;">Phụ kiện treo tường</div></div></li>
+        <li class="item"><img src="Iconcreme-Halloween-Cat.512.png" alt=""> <div><strong>Mặt nạ mèo đen</strong><div style="color:#555;">Cho buổi hóa trang</div></div></li>
+        <li class="item"><img src="Iconcreme-Halloween-Mummy.512.png" alt=""> <div><strong>Tượng xác ướp mini</strong><div style="color:#555;">Vật phẩm trưng bày</div></div></li>
+        <li class="item"><img src="Iconcreme-Halloween-Home.512.png" alt=""> <div><strong>Đèn ma ngôi nhà</strong><div style="color:#555;">Decor ngoại thất</div></div></li>
+        <li class="item"><img src="Iconcreme-Halloween-Twitter.512.png" alt=""> <div><strong>Sticker Halloween</strong><div style="color:#555;">Dán trang trí</div></div></li>
+      </ul>
+    </div>
+
+    <footer>✨ Design by Anh Thi dễ thương ✨</footer>
+  </div>
+
+  <script>
+    const input = document.getElementById('q');
+    const items = Array.from(document.querySelectorAll('#list .item'));
+    input.addEventListener('input', function(){
+      const s = this.value.trim().toLowerCase();
+      if(s===''){ items.forEach(it=>it.style.display='flex'); return; }
+      items.forEach(it=>{
+        const txt = it.textContent.toLowerCase();
+        it.style.display = txt.includes(s) ? 'flex' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

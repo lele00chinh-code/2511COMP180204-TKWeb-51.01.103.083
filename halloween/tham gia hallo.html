@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Xác nhận tham gia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{ --accent:#ffd27f; }
+    body{ 
+      font-family:"Times New Roman", serif; 
+      background: url('/image/bg.jpg') center/cover no-repeat fixed; 
+      margin:0; 
+      font-size:24px; 
+      color:#222;
+    }
+    .wrap{ 
+      background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.82)); 
+      min-height:100vh; 
+      padding:70px 18px; 
+    }
+    .panel{ 
+      max-width:700px; 
+      margin:0 auto; 
+      background:rgba(255,255,255,0.95); 
+      padding:22px; 
+      border-left:6px solid var(--accent); 
+      border-radius:12px; 
+      box-shadow:0 10px 25px rgba(0,0,0,0.06); 
+    }
+    .return{ 
+      position:fixed; 
+      top:18px; 
+      left:18px; 
+      color:var(--accent); 
+      font-size:26px; 
+      text-decoration:none; 
+    }
+    label{ font-weight:700; color:#222; }
+    .btn-accent{ 
+      background:var(--accent); 
+      border:none; 
+      color:#222; 
+      font-weight:700; 
+      padding:10px 14px; 
+      border-radius:8px; 
+    }
+    footer{ 
+      text-align:center; 
+      margin-top:28px; 
+      color:var(--accent); 
+    }
+    @media(max-width:576px){ body{font-size:18px;} }
+  </style>
+</head>
+<body>
+  <a class="return" href="index.html">⬅</a>
+  <div class="wrap">
+    <div class="panel">
+      <h1 style="text-align:center; color:#333; font-size:32px;">🎃 Xác nhận tham gia</h1>
+      <form id="joinForm">
+        <div class="mb-3">
+          <label for="n">Họ và tên</label>
+          <input id="n" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="e">Email</label>
+          <input id="e" type="email" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label>Bạn xác nhận tham gia không?</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="y" name="confirm" value="yes" required>
+            <label class="form-check-label" for="y">Có</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="nono" name="confirm" value="no">
+            <label class="form-check-label" for="nono">Không</label>
+          </div>
+        </div>
+        <div class="d-grid">
+          <button class="btn-accent">Gửi xác nhận</button>
+        </div>
+      </form>
+    </div>
+
+    <footer>✨ Design by Anh Thi dễ thương ✨</footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $('#joinForm').on('submit', function(e){
+      e.preventDefault();
+      const val = $('input[name="confirm"]:checked').val();
+      if(val==='yes') alert('🎉 Cảm ơn bạn đã đăng ký tham gia!');
+      else alert('😢 Tiếc bạn không thể tham gia. Hẹn gặp lần sau!');
+      this.reset(); // clear inputs
+    });
+  </script>
+</body>
+</html>

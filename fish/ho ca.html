@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hồ cá vui nhộn</title>
+  <style>
+    :root {
+      --bubble-size: 50px;
+      --scale-entity: 1.2;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #66ccff;
+    }
+
+    #content {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(180deg, #99ddff 0%, #0066cc 100%);
+      background-size: 200% 200%;
+      animation: waveBG 15s ease-in-out infinite alternate;
+      overflow: hidden;
+      transition: background 2s ease-in-out;
+    }
+
+    @keyframes waveBG {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    #light-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0) 70%);
+      animation: lightMove 12s ease-in-out infinite;
+      mix-blend-mode: screen;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    @keyframes lightMove {
+      0%, 100% { transform: translate(-3%, -3%) rotate(0deg); opacity: 0.6; }
+      50% { transform: translate(5%, 5%) rotate(10deg); opacity: 0.9; }
+    }
+
+    .btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 10px 14px;
+      background-color: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 200;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: white;
+    }
+
+    #shark, #diver1, #diver2, #diver3, #turtle, #fish, #fish2 {
+      position: absolute;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 10;
+    }
+
+    #shark { animation: MoveShark 18s linear infinite; }
+    @keyframes MoveShark {
+      0% { top: 65%; left: -10%; transform: scale(1.3) scaleX(1); }
+      50% { top: 40%; left: 110%; transform: scale(1.3) scaleX(-1); }
+      100% { top: 65%; left: -10%; transform: scale(1.3) scaleX(1); }
+    }
+
+    #diver1 { animation: MoveDiver1 25s ease-in-out infinite; }
+    @keyframes MoveDiver1 {
+      0% { top: 80%; left: -5%; transform: scale(1) scaleX(1); }
+      50% { top: 50%; left: 100%; transform: scale(1) scaleX(-1); }
+      100% { top: 80%; left: -5%; transform: scale(1) scaleX(1); }
+    }
+
+    #diver2 { animation: MoveDiver2 30s ease-in-out infinite; }
+    @keyframes MoveDiver2 {
+      0% { top: 20%; left: 110%; transform: scale(0.9) scaleX(-1); }
+      50% { top: 60%; left: -10%; transform: scale(0.9) scaleX(1); }
+      100% { top: 20%; left: 110%; transform: scale(0.9) scaleX(-1); }
+    }
+
+    #diver3 { animation: MoveDiver3 22s ease-in-out infinite; }
+    @keyframes MoveDiver3 {
+      0% { top: 10%; left: -10%; transform: scale(1) scaleX(1); }
+      50% { top: 40%; left: 100%; transform: scale(1) scaleX(-1); }
+      100% { top: 10%; left: -10%; transform: scale(1) scaleX(1); }
+    }
+
+    #turtle { animation: MoveTurtle 35s linear infinite; }
+    @keyframes MoveTurtle {
+      0% { top: 90%; left: -5%; transform: scale(1.1) scaleX(1); }
+      50% { top: 70%; left: 105%; transform: scale(1.1) scaleX(-1); }
+      100% { top: 90%; left: -5%; transform: scale(1.1) scaleX(1); }
+    }
+
+    #fish { animation: MoveFish 20s linear infinite; }
+    @keyframes MoveFish {
+      0% { top: 30%; left: -15%; transform: scale(0.8) scaleX(1); }
+      50% { top: 60%; left: 110%; transform: scale(0.8) scaleX(-1); }
+      100% { top: 30%; left: -15%; transform: scale(0.8) scaleX(1); }
+    }
+
+    #fish2 { animation: MoveFish2 28s linear infinite; }
+    @keyframes MoveFish2 {
+      0% { top: 60%; left: 110%; transform: scale(1) scaleX(-1); }
+      50% { top: 20%; left: -15%; transform: scale(1) scaleX(1); }
+      100% { top: 60%; left: 110%; transform: scale(1) scaleX(-1); }
+    }
+
+    .bubbles {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      z-index: 5;
+    }
+
+    .bubbles span {
+      width: var(--bubble-size);
+      height: var(--bubble-size);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(173,216,230,0.4));
+      animation: bubble 8s linear infinite;
+      animation-duration: calc(80s / var(--i));
+      filter: brightness(1.5);
+    }
+
+    @keyframes bubble {
+      0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+      50% { transform: translateY(-50vh) scale(1.1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.7); opacity: 0; }
+    }
+
+    img {
+      height: 120px;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <div id="light-overlay"></div>
+    <button id="toggle-bg" class="btn">Đổi màu nước</button>
+
+    <div id="shark"><img src="shark.png" alt="shark"></div>
+    <div id="diver1"><img src="diver1.png" alt="diver1"></div>
+    <div id="diver2"><img src="diver2.png" alt="diver2"></div>
+    <div id="diver3"><img src="diver3.png" alt="diver3"></div>
+    <div id="fish"><img src="goldFishSchool.png" alt="fish"></div>
+    <div id="fish2"><img src="aintSchool.png" alt="fish2"></div>
+    <div id="turtle"><img src="turtle.png" alt="turtle"></div>
+
+    <div class="bubbles">
+      <span style="--i:10"></span>
+      <span style="--i:12"></span>
+      <span style="--i:15"></span>
+      <span style="--i:18"></span>
+      <span style="--i:20"></span>
+      <span style="--i:22"></span>
+      <span style="--i:25"></span>
+      <span style="--i:28"></span>
+      <span style="--i:30"></span>
+      <span style="--i:35"></span>
+    </div>
+  </div>
+
+  <script>
+    const btnToggle = document.getElementById('toggle-bg');
+    const content = document.getElementById('content');
+    let dark = false;
+
+    btnToggle.addEventListener('click', () => {
+      dark = !dark;
+      if (dark) {
+        content.style.background = "linear-gradient(180deg, #0099ff 0%, #003366 100%)";
+        btnToggle.textContent = "Trở lại màu sáng";
+      } else {
+        content.style.background = "linear-gradient(180deg, #99ddff 0%, #0066cc 100%)";
+        btnToggle.textContent = "Đổi màu nước";
+      }
+    });
+  </script>
+</body>
+</html>
